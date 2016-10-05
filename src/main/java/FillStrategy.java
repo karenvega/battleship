@@ -4,4 +4,9 @@
 public interface FillStrategy {
 
     public void putBattle(Battle battle);
+
+    public int getX(int max);
+
+    public int getY(int max);
+
 }

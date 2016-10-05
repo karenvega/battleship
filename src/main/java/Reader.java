@@ -7,13 +7,13 @@ import java.io.InputStreamReader;
  */
 public class Reader {
 
-    public void read() {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        try {
-            String line = br.readLine();
-            System.out.println(line + " line...");
+    public String read() {
+        System.out.println("Por favor digite la coordenada que desea atacar. Ejemplo A5: ");
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+            return br.readLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Ocurrió un error mientras se leía la línea. Intentelo de nuevo");
         }
+        return "";
     }
 }

@@ -8,4 +8,17 @@ public class Gamer {
     public Gamer(int tries) {
         this.tries = tries;
     }
+
+    public void play(String play) {
+
+    }
+
+    private void substractTries() {
+        tries--;
+    }
+
+    public int getTries() {
+        return tries;
+    }
+
 }

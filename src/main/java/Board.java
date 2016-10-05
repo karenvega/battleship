@@ -32,6 +32,8 @@ public class Board {
         }
     }
 
+
+
     private void anything(Battle battle, int x, int y) {
         switch (battle.direction) {
             case VERTICAL:
