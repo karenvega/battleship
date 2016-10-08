@@ -9,4 +9,6 @@ public interface FillStrategy {
 
     public int getY(int max);
 
+    public String getDirection();
+
 }

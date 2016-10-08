@@ -19,11 +19,8 @@ public class Game {
         while (gamer.getTries() != 0) {
             String play = reader.read();
             gamer.play(play);
+            board.display();
         }
-
-        board.display();
-
-
         reader.read();
 
     }

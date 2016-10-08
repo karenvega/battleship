@@ -3,8 +3,9 @@
  */
 public class Board {
 
-    private String grid[][];
+    public String grid[][];
     private Battle[] battles = new Battle[5];
+    private FillStrategy strategy = new RandomStrategy();
 
     public Board(int high, int width) {
         grid = new String[width][high];
@@ -54,4 +55,68 @@ public class Board {
         }
     }
 
+    private void putBattles() {
+        for (int i = 0; i < 5; i++) {
+            Battle battle = battles[i];
+            int x = strategy.getX(grid.length);
+            int y = strategy.getY(grid.length);
+        }
+    }
+
+    private void setBattle(Battle battle) {
+        for (int i = battle.xInitial; i < battle.xInitial + battle.size; i ++) {
+            grid[i][battle.yInitial] = battle.character;
+        }
+    }
+
+
+    public boolean isAvailableHR(int x, int y, int battleSize) {
+        if (grid[x][y] == "~" && x + battleSize < grid.length) {
+            for (int i = 1; i <= battleSize; i++) {
+                if (grid[x + i][y] != "~") {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isAvailableHL(int x, int y, int battleSize) {
+        if (grid[x][y] == "~" && x - battleSize > 0) {
+            for (int i = 1; i <= battleSize; i++) {
+                if (grid[x - i][y] != "~") {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isAvailableVU(int x, int y, int battleSize) {
+        if (grid[x][y] == "~" && y + battleSize < grid.length) {
+            for (int i = 1; i <= battleSize; i++) {
+                if (grid[x][y + i] != "~") {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isAvailableVD(int x, int y, int battleSize) {
+        if (grid[x][y] == "~" && y - battleSize > 0) {
+            for (int i = 1; i <= battleSize; i++) {
+                if (grid[x][y - i] != "~") {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    
 }
