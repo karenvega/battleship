@@ -1,3 +1,5 @@
+import com.personal.battleship.strategy.FillStrategy;
+import com.personal.battleship.util.Util;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -8,18 +10,6 @@ import org.junit.Test;
  */
 public class RandomStrategyTest {
 
-    @Test
-    public void testGetX() {
-        FillStrategy rs = new RandomStrategy();
-        int actual = rs.getX(10);
-        Assert.assertTrue(actual > -1 && actual < 10);
-    }
 
-    @Test
-    public void testGetY() {
-        FillStrategy rs = new RandomStrategy();
-        int actual = rs.getY(10);
-        Assert.assertTrue(actual > -1 && actual < 10);
-    }
 
 }

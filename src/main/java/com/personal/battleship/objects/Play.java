@@ -1,3 +1,5 @@
+package com.personal.battleship.objects;
+
 import java.util.Optional;
 
 /**
