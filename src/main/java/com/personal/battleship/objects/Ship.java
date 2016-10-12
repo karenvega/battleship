@@ -6,7 +6,7 @@ import com.personal.battleship.util.Util;
 import java.util.*;
 
 /**
- * Clase que representa a un bote
+ * Clase que representa a un bot
  * Created by karenvega on 9/29/16.
  */
 public class Ship {
@@ -16,12 +16,6 @@ public class Ship {
 
     /* Character that indicates what type of battle is*/
     public String character;
-
-    /* Initial position in the x coordinate */
-    private int xInitial;
-
-    /* Initial position in the y coordinate */
-    private int yInitial;
 
     private FillStrategy strategy;
 
@@ -50,13 +44,19 @@ public class Ship {
     }
 
     public void downPiece(Play play){
-        coordinatesSank.put(new Coordinate(play.getX(), play.getY()), Boolean.TRUE);
+        Set<Coordinate> keys = coordinatesSank.keySet();
+        for (Coordinate key : keys) {
+            if (key.x == play.getX() && key.y == play.getY()) {
+                coordinatesSank.put(key, Boolean.TRUE);
+            }
+        }
     }
 
     public boolean isSank() {
-        Iterator it = coordinatesSank.entrySet().iterator();
-        while (it.hasNext()) {
-            if (Boolean.FALSE == coordinatesSank.get(it.next())) {
+        Set<Coordinate> keys = coordinatesSank.keySet();
+        for (Coordinate key : keys) {
+            System.out.println(coordinatesSank.get(key));
+            if (Boolean.FALSE == coordinatesSank.get(key)) {
                 return false;
             }
         }

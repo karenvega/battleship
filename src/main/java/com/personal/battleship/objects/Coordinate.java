@@ -5,11 +5,24 @@ package com.personal.battleship.objects;
  */
 public class Coordinate {
 
-    private int x;
-    private int y;
+    public int x;
+    public int y;
 
     public Coordinate(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        if (object != null && object instanceof Coordinate)
+        {
+            if (this.x ==  ((Coordinate)object).x && this.y == ((Coordinate)object).y)
+             return true;
+            return false;
+        }
+
+        return false;
     }
 }

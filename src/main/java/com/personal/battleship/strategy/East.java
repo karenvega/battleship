@@ -1,5 +1,6 @@
 package com.personal.battleship.strategy;
 
+import com.personal.battleship.objects.Coordinate;
 import com.personal.battleship.objects.Ship;
 
 /**
@@ -10,9 +11,9 @@ public class East implements FillStrategy {
 
     @Override
     public boolean isAvailable(String grid[][], int x, int y, int size) {
-        if (grid[x][y] == "~" && x + size < grid.length) {
-            for (int i = 1; i <= size; i++) {
-                if (grid[x + i][y] != "~") {
+        if (grid[x][y] == "~" && x - size > 0) {
+            for (int i = 0; i < size; i++) {
+                if (grid[x - i][y] != "~") {
                     return false;
                 }
             }
@@ -23,8 +24,9 @@ public class East implements FillStrategy {
 
     @Override
     public void putBattle(String[][] grid, Ship battle, int x, int y) {
-        for (int i = 0; i < x + battle.size; i++) {
+        for (int i = x; i > x - battle.size; i--) {
             grid[i][y] = battle.character;
+            battle.ponerBarco(new Coordinate(i, y));
         }
     }
 }

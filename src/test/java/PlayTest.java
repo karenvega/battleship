@@ -9,33 +9,7 @@ import java.util.Optional;
  */
 public class PlayTest {
 
-    @Test
-    public void testValidX() {
-        Play play = new Play(Optional.ofNullable("A5"));
-        boolean actual = play.isValidX();
-        Assert.assertTrue(actual);
-    }
 
-    @Test
-    public void testValidY() {
-        Play play = new Play(Optional.ofNullable("a5"));
-        boolean actual = play.isValidY();
-        Assert.assertTrue(actual);
-    }
-
-    @Test
-    public void testInvalidX() {
-        Play play = new Play(Optional.ofNullable("a5"));
-        boolean actual = play.isValidX();
-        Assert.assertFalse(actual);
-    }
-
-    @Test
-    public void testInvalidY() {
-        Play play = new Play(Optional.ofNullable("Ao"));
-        boolean actual = play.isValidY();
-        Assert.assertFalse(actual);
-    }
 
     @Test
     public void testGetX() {

@@ -9,12 +9,19 @@ import java.io.InputStreamReader;
  */
 public class Reader {
 
-    public String read() {
-        System.out.println("Por favor digite la coordenada que desea atacar. Ejemplo A5: ");
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+    BufferedReader br;
+
+    public Reader() {
+        br = new BufferedReader(new InputStreamReader(System.in));
+    }
+
+    public String read(String message) {
+        System.out.println(message);
+        try {
             return br.readLine();
         } catch (IOException e) {
             System.out.println("Ocurrió un error mientras se leía la línea. Intentelo de nuevo");
+            e.printStackTrace();
         }
         return "";
     }

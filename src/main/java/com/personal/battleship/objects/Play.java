@@ -17,17 +17,17 @@ public class Play {
 
     public Play(Optional<String> play) {
         if (play.orElse("").length() == 2) {
-            x = play.get().charAt(0);
-            y = play.get().charAt(1);
+            y = play.get().charAt(0);
+            x = play.get().charAt(1);
         }
     }
 
-    public boolean isValidX() {
-        return x > 64 && x < 91 ? true : false;
+    private boolean isValidX() {
+        return (int)x > 47 && (int)x < 58 ? true : false;
     }
 
-    public boolean isValidY() {
-        return y > 47 && y < 58 ? true : false;
+    private boolean isValidY() {
+        return (int)y > 64 && (int)y < 91 ? true : false;
     }
 
     public boolean isValid() {
@@ -35,10 +35,10 @@ public class Play {
     }
 
     public int getX() {
-        return x - 65;
+        return (int)x - 48;
     }
 
     public int getY() {
-        return y - 48;
+        return (int)y - 65;
     }
 }

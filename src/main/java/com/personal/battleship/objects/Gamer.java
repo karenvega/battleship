@@ -9,6 +9,7 @@ import java.util.Optional;
 public class Gamer {
 
     private int tries;
+    private String name;
 
     public Gamer(int tries) {
         this.tries = tries;
@@ -25,6 +26,14 @@ public class Gamer {
 
     public int getTries() {
         return tries;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void addName(String name) {
+        this.name = name;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.personal.battleship.board;
 
+import com.personal.battleship.objects.Coordinate;
 import com.personal.battleship.objects.Play;
 import com.personal.battleship.objects.Ship;
 import com.personal.battleship.util.Util;
@@ -40,9 +41,9 @@ public class Board {
     }
 
     private void initialize() {
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid.length; j++) {
-                grid[i][j] = "~";
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < high; y++) {
+                grid[x][y] = "~";
             }
         }
     }
@@ -57,31 +58,40 @@ public class Board {
                 y = Util.getY(high);
             }
             battle.getStrategy().putBattle(grid, battle, x, y);
-
         }
     }
 
     public void doMovement(Play play) {
         int x = play.getX();
         int y = play.getY();
-        if ("~".equals(grid[x][y]) && ".".equals(grid[x][y])) {
-            grid[x][y] = ".";
-        } else {
-            grid[x][y] = searchShip(play);
-        }
+        grid[x][y] = searchShip(play);
+        System.out.println(grid[x][y]);
     }
 
     public String searchShip(Play coordinate) {
         for (int i = 0; i < battles.size(); i++) {
             Ship ship = battles.get(i);
-            if (ship.getCoordinates().contains(coordinate)) {
+            if (ship.getCoordinates().contains(new Coordinate(coordinate.getX(), coordinate.getY()))) {
                 if (ship.isSank()) {
-                    return ship.character;
+                    updateBattleSunk(ship);
+                } else {
+                    ship.downPiece(coordinate);
+                    if (ship.isSank()) {
+                        updateBattleSunk(ship);
+                        return ship.character;
+                    }
                 }
                 return "X";
             }
         }
         return ".";
+    }
+
+    public void updateBattleSunk(Ship ship) {
+        for (Coordinate c: ship.getCoordinates()) {
+            System.out.println(c.x + " ... " + c.y);
+            grid[c.x][c.y] = ship.character;
+        }
     }
 
 }

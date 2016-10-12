@@ -2,6 +2,7 @@ package com.personal.battleship.principal;
 
 import com.personal.battleship.board.Board;
 import com.personal.battleship.objects.Gamer;
+import com.personal.battleship.objects.Play;
 import com.personal.battleship.objects.Ship;
 import com.personal.battleship.util.Reader;
 
@@ -18,6 +19,7 @@ public class Game {
         Game game = new Game();
         Reader reader = new Reader();
         Gamer gamer = new Gamer(10);
+        gamer.addName(reader.read("INGRESE EL ALIAS DEL JUGADOR:"));
 
         Ship portaaviones = new Ship(5, "P");
         Ship acorazado = new Ship(4, "A");
@@ -34,8 +36,13 @@ public class Game {
         board.display();
 
         while (gamer.getTries() != 0) {
-            String play = reader.read();
-            board.doMovement(gamer.play(play));
+            String playLine = reader.read("Por favor digite la coordenada que desea atacar. Ejemplo A5: ");
+            Play play  = gamer.play(playLine);
+            if (play.isValid()) {
+                board.doMovement(play);
+            } else {
+                System.out.println("Jugada Inválida");
+            }
             board.display();
         }
 

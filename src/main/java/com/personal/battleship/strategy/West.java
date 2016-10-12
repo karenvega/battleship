@@ -11,9 +11,9 @@ public class West implements FillStrategy {
 
     @Override
     public boolean isAvailable(String grid[][], int x, int y, int size) {
-        if (grid[x][y] == "~" && x - size > 0) {
-            for (int i = 1; i <= size; i++) {
-                if (grid[x - i][y] != "~") {
+        if (grid[x][y] == "~" && x + size < grid.length) {
+            for (int i = 0; i < size; i++) {
+                if (grid[x + i][y] != "~") {
                     return false;
                 }
             }
@@ -24,7 +24,7 @@ public class West implements FillStrategy {
 
     @Override
     public void putBattle(String[][] grid, Ship ship, int x, int y) {
-        for (int i = x; i < x - ship.size; i++) {
+        for (int i = x; i < x + ship.size; i++) {
             grid[i][y] = ship.character;
             ship.ponerBarco(new Coordinate(i, y));
         }
