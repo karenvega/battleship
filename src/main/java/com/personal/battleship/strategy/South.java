@@ -25,7 +25,7 @@ public class South implements FillStrategy {
     @Override
     public void putBattle(String[][] grid, Ship battle, int x, int y) {
         for (int i = y; i < y + battle.size; i++) {
-            grid[x][i] = battle.character;
+            //grid[x][i] = battle.character;
             battle.ponerBarco(new Coordinate(x, i));
         }
     }

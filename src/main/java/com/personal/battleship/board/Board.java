@@ -89,7 +89,6 @@ public class Board {
 
     public void updateBattleSunk(Ship ship) {
         for (Coordinate c: ship.getCoordinates()) {
-            System.out.println(c.x + " ... " + c.y);
             grid[c.x][c.y] = ship.character;
         }
     }

@@ -25,7 +25,7 @@ public class West implements FillStrategy {
     @Override
     public void putBattle(String[][] grid, Ship ship, int x, int y) {
         for (int i = x; i < x + ship.size; i++) {
-            grid[i][y] = ship.character;
+            //grid[i][y] = ship.character;
             ship.ponerBarco(new Coordinate(i, y));
         }
     }
