@@ -56,10 +56,9 @@ public class Ship {
     }
 
     private void updateStatus() {
-        Set<Coordinate> keys = coordinatesSunk.keySet();
         isSunk = true;
-        for (Coordinate key : keys) {
-            if (Boolean.FALSE == coordinatesSunk.get(key)) {
+        for (Coordinate key : occupiedCells) {
+            if (!coordinatesSunk.get(key)) {
                 isSunk = false;
                 break;
             }
