@@ -22,7 +22,7 @@ public class Ship {
 
     private Orientation strategy;
 
-    private Map<Coordinate, Boolean> coordinatesSunk = new HashMap<>();
+    private Map<Coordinate, Boolean> sunkCoordinates = new HashMap<>();
 
     private Set<Coordinate> occupiedCells = new HashSet<>();
 
@@ -43,11 +43,11 @@ public class Ship {
 
     public void addCoordinate(Coordinate coordinate) {
         occupiedCells.add(coordinate);
-        coordinatesSunk.put(coordinate, Boolean.FALSE);
+        sunkCoordinates.put(coordinate, Boolean.FALSE);
     }
 
     public void knockDownPiece(Coordinate coordinate) {
-        coordinatesSunk.put(coordinate, Boolean.TRUE);
+        sunkCoordinates.put(coordinate, Boolean.TRUE);
         updateStatus();
     }
 
@@ -58,7 +58,7 @@ public class Ship {
     private void updateStatus() {
         isSunk = true;
         for (Coordinate key : occupiedCells) {
-            if (!coordinatesSunk.get(key)) {
+            if (!sunkCoordinates.get(key)) {
                 isSunk = false;
                 break;
             }
