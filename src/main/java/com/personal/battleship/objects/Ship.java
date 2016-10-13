@@ -1,27 +1,30 @@
 package com.personal.battleship.objects;
 
-import com.personal.battleship.strategy.FillStrategy;
+import com.personal.battleship.strategy.Orientation;
 import com.personal.battleship.util.Util;
 
 import java.util.*;
 
 /**
- * Clase que representa a un bot
+ * Clase que representa un barco
  * Created by karenvega on 9/29/16.
  */
 public class Ship {
 
-    /* Size of the battle */
-    public int size;
+    /* Tamaña del barco */
+    private int size;
 
-    /* Character that indicates what type of battle is*/
-    public String character;
+    /* Caracter que representa al barco*/
+    private String character;
 
-    private FillStrategy strategy;
+    /** Bandera que indica si el barco ya fue hundido **/
+    private boolean isSunk = false;
 
-    private Map<Coordinate, Boolean> coordinatesSank = new HashMap<>();
+    private Orientation strategy;
 
-    private List<Coordinate> coordinates = new ArrayList<>();
+    private Map<Coordinate, Boolean> coordinatesSunk = new HashMap<>();
+
+    private Set<Coordinate> occupiedCells = new HashSet<>();
 
 
     /**
@@ -34,38 +37,45 @@ public class Ship {
         strategy = Util.getDirection();
     }
 
-    public FillStrategy getStrategy() {
+    public Orientation getStrategy() {
         return strategy;
     }
 
-    public void ponerBarco(Coordinate coordinate) {
-        coordinates.add(coordinate);
-        coordinatesSank.put(coordinate, Boolean.FALSE);
+    public void addCoordinate(Coordinate coordinate) {
+        occupiedCells.add(coordinate);
+        coordinatesSunk.put(coordinate, Boolean.FALSE);
     }
 
-    public void downPiece(Play play){
-        Set<Coordinate> keys = coordinatesSank.keySet();
+    public void knockDownPiece(Coordinate coordinate) {
+        coordinatesSunk.put(coordinate, Boolean.TRUE);
+        updateStatus();
+    }
+
+    public boolean isSunk() {
+        return isSunk;
+    }
+
+    private void updateStatus() {
+        Set<Coordinate> keys = coordinatesSunk.keySet();
+        isSunk = true;
         for (Coordinate key : keys) {
-            if (key.x == play.getX() && key.y == play.getY()) {
-                coordinatesSank.put(key, Boolean.TRUE);
+            if (Boolean.FALSE == coordinatesSunk.get(key)) {
+                isSunk = false;
+                break;
             }
         }
     }
 
-    public boolean isSank() {
-        Set<Coordinate> keys = coordinatesSank.keySet();
-        for (Coordinate key : keys) {
-            System.out.println(coordinatesSank.get(key));
-            if (Boolean.FALSE == coordinatesSank.get(key)) {
-                return false;
-            }
-        }
-        return true;
+    public Set<Coordinate> getCoordinates() {
+        return occupiedCells;
     }
 
-    public List<Coordinate> getCoordinates() {
-        return coordinates;
+    public String getCharacter() {
+        return character;
     }
 
+    public int getSize() {
+        return size;
+    }
 
 }

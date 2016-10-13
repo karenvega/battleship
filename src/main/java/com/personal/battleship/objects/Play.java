@@ -3,6 +3,7 @@ package com.personal.battleship.objects;
 import java.util.Optional;
 
 /**
+ * Clase que representa una jugada.
  * Created by karenvega on 10/5/16.
  */
 public class Play {

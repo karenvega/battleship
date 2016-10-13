@@ -1,16 +1,25 @@
 package com.personal.battleship.objects;
 
 /**
+ * Coordenada del tablero
  * Created by karenvega on 10/11/16.
  */
 public class Coordinate {
 
-    public int x;
-    public int y;
+    private int x;
+    private int y;
 
     public Coordinate(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     @Override
@@ -24,5 +33,11 @@ public class Coordinate {
         }
 
         return false;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return String.valueOf(x).hashCode() + String.valueOf(y).hashCode();
     }
 }

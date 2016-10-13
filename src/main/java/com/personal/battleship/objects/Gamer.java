@@ -3,7 +3,7 @@ package com.personal.battleship.objects;
 import java.util.Optional;
 
 /**
- * Clase que representa a un jugador
+ * Representa a un jugador
  * Created by karenvega on 9/30/16.
  */
 public class Gamer {

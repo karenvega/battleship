@@ -3,6 +3,7 @@ package com.personal.battleship.util;
 import com.personal.battleship.strategy.*;
 
 /**
+ * Utilitarios
  * Created by karenvega on 10/4/16.
  */
 public class Util {
@@ -15,7 +16,7 @@ public class Util {
         return (int) (Math.random() * max);
     }
 
-    public static FillStrategy getDirection() {
+    public static Orientation getDirection() {
         int dir = (int) (Math.random() * 4);
         switch (dir) {
             case 1:
