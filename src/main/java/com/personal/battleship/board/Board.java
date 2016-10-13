@@ -17,9 +17,9 @@ public class Board {
     private String grid[][];
     private Set<Ship> ships = new HashSet<>();
     private Set<Coordinate> occupiedCells = new HashSet<>();
-    private final String EMPTY_CELL = "~";
-    private final String UNCOVERED_EMPTY_CELL = ".";
-    private final String UNCOVERED_OCCUPIED_CELL = "X";
+    private static final String EMPTY_CELL = "~";
+    private static final String UNCOVERED_EMPTY_CELL = ".";
+    private static final String UNCOVERED_OCCUPIED_CELL = "X";
 
     public Board(int size, Set<Ship> ships) {
         this.ships = ships;

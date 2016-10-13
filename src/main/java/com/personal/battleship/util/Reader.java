@@ -25,4 +25,8 @@ public class Reader {
         }
         return "";
     }
+
+    public void closeReader() throws IOException {
+        br.close();
+    }
 }
